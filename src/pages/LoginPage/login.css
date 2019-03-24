@@ -13,8 +13,26 @@ body {
   color: rgba(255, 255, 255, 0.7);
   font-family: "Noto Sans", sans-serif;
   font-size: 14px;
+}
+.emailresetlabel{
+  color: green;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: bold;
+}
+.resetemailinput{
+  top: 50%;
+  left: 50%;
+  width: 65%;
+  height: 55%;
+  padding-left: 35%;
+}
+.resetpasswordbutton{
+  height: 40px;
   
 }
+
+
 .Modal {
   position: absolute;
   top: 50%;

@@ -5,8 +5,9 @@ import ReactDOM from 'react-dom';
 import './login.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {Button} from 'reactstrap';
-const ReactCSSTG =ReactCSSTransitionGroup;
 
+
+const ReactCSSTG =ReactCSSTransitionGroup;
 
 // Main app
  export default class App extends React.Component {
@@ -68,7 +69,12 @@ class Modal extends React.Component {
                 <Button className="fb" onClick={ this.props.onClick }><i className="fa fa-facebook" aria-hidden="true">FaceBook</i></Button>
                 <Button className="tw" onClick={ this.props.onClick }><i className="fa fa-gmail" aria-hidden="true">Gmail</i></Button>
               </div>
-                <a href='/forgetpassword'>forget your password ?</a>
+                
+                
+                <a href='/forgotPassword'>forget your password ?</a>
+                
+
+                
            </div>
            </div>
            </div>

@@ -42,7 +42,7 @@ const navbar = () => {
           </Form> */}
           <div>
             <Image width="50" height="50" roundedCircle />
-            <Button variant="success">log out</Button>
+            <Button variant="danger">log out</Button>
           </div>
         </Navbar.Collapse>
       </Navbar>
