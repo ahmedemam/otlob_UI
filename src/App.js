@@ -13,14 +13,24 @@ import HomePage from "./pages/HomePage/HomePage";
 import AddOrderPage from "./pages/AddOrderPage/AddOrderPage";
 // import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
 
+import Login from "./pages/LoginPage/LoginPage";
+import RegistrationForm from "./pages/RegisterPage/RegisterPage";
+import ForgotPassword from "./pages/LoginPage/ForgotPassword";
+
 class App extends Component {
   render() {
     return (
       <div className="App">
+      
         <BrowserRouter>
           <Navbar />
           <React.Fragment>
             <Switch>
+              <Route path="/login" exact component={Login} />
+              <Route path="/register" exact component={RegistrationForm} />
+              <Route path="/forgotPassword" exact component={ForgotPassword} />
+
+
               <Route path="/" exact component={HomePage} />
               {/* <Route path="/login" render={() => <LoginPage />} /> */}
               {/* <Route path="/register" render={() => <RegisterPage />} /> */}
