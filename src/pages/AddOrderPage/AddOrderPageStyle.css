@@ -1,0 +1,9 @@
+.AddOrderPage {
+    border: 1px solid black;
+}
+
+.AddOrderPage Table{
+    width: 40%;
+    border: 1px solid black;
+    float: right;
+}
