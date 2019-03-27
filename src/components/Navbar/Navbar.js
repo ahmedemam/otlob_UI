@@ -2,25 +2,23 @@ import React from "react";
 
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, Button, Image } from "react-bootstrap";
+import "./navbar.scss";
 
 const navbar = () => {
   return (
     <header>
-      <Navbar variant="light" expand="md">
+      <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
         <Navbar.Brand>
           <NavLink to="/" exact>
-            <img
-              width="140"
-              height="40"
-              className="d-inline-block align-top"
-              alt="Logo"
-            />
+            Yalla Notlob
           </NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <ul>
+            <ul className="navlinks">
               <li>
                 <NavLink to="/" exact>
                   Home
@@ -35,15 +33,18 @@ const navbar = () => {
               <li>
                 <NavLink to="/orders">Orders</NavLink>
               </li>
+              <li>
+                <NavLink to="/order-details">Order details</NavLink>
+              </li>
             </ul>
           </Nav>
-          {/* <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          </Form> */}
-          <div>
+          <Nav>
             <Image width="50" height="50" roundedCircle />
-            <Button variant="danger">log out</Button>
-          </div>
+            <Nav.Link href="#user" className="align-self-center">
+              Mostafa Ali
+            </Nav.Link>
+            <Button variant="danger">Logout</Button>
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     </header>

@@ -1,0 +1,17 @@
+.order-details {
+  &__table {
+    min-height: 300px;
+  }
+
+  table {
+
+    td,
+    tr {
+      text-align: center;
+    }
+  }
+
+  &__modal {
+    margin: 15px 0;
+  }
+}

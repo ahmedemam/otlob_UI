@@ -1,10 +1,12 @@
 @charset "UTF-8";
-@import 'https://fonts.googleapis.com/css?family=Noto+Sans';
+@import "https://fonts.googleapis.com/css?family=Noto+Sans";
+
 body {
   font-family: "Noto Sans", sans-serif;
-  background: url("food.jpeg") no-repeat fixed;
+  /* background: url("food.jpeg") no-repeat fixed; */
 }
-.widthfifth{
+
+.widthfifth {
   width: 960px;
   height: 35px;
   border: 0;
@@ -14,24 +16,25 @@ body {
   font-family: "Noto Sans", sans-serif;
   font-size: 14px;
 }
-.emailresetlabel{
+
+.emailresetlabel {
   color: green;
   font-size: 15px;
   font-style: italic;
   font-weight: bold;
 }
-.resetemailinput{
+
+.resetemailinput {
   top: 50%;
   left: 50%;
   width: 65%;
   height: 55%;
   padding-left: 35%;
 }
-.resetpasswordbutton{
-  height: 40px;
-  
-}
 
+.resetpasswordbutton {
+  height: 40px;
+}
 
 .Modal {
   position: absolute;
@@ -44,6 +47,7 @@ body {
   background-size: cover;
   border-radius: 5px;
 }
+
 .Modal a {
   display: block;
   color: rgba(255, 255, 255, 0.7);
@@ -54,6 +58,7 @@ body {
   margin: 10px;
   margin-left: 40px;
 }
+
 .Modal a:hover {
   text-decoration: underline;
 }
@@ -65,6 +70,7 @@ body {
   border-bottom: 1px solid #58a4b0;
   margin: 0 20px;
 }
+
 .Input input {
   border: 0;
   width: 300px;
@@ -75,13 +81,14 @@ body {
   font-family: "Noto Sans", sans-serif;
   font-size: 14px;
 }
+
 .Input input:required {
   box-shadow: none;
 }
-.Input input:focus ~ label {
+
+.Input input:focus~label {
   opacity: 1;
 }
-
 
 label {
   font-family: FontAwesome;
@@ -90,6 +97,7 @@ label {
   margin-top: 17px;
   transition: opacity 0.3s ease-in-out;
 }
+
 label::before {
   padding: 5px 5px 0 0;
   opacity: 0.5;
@@ -109,16 +117,18 @@ form button {
   cursor: pointer;
   background: #58a4b0;
 }
-.signinbutton{
+
+.signinbutton {
   font-size: 35px;
   transform: translateX(-50%);
   height: 5%;
 }
+
 .social-signin {
   text-align: center;
   padding-top: 15px;
-  
 }
+
 .social-signin button {
   width: 40%;
   border: none;
@@ -126,14 +136,17 @@ form button {
   cursor: pointer;
   padding: 10px;
 }
+
 .social-signin button i {
   font-size: 20px;
   color: white;
 }
+
 .social-signin button.fb {
-  background: #3A5A98;
+  background: #3a5a98;
   margin-right: 13px;
 }
+
 .social-signin button.tw {
   background: #c33c3c;
 }
@@ -159,11 +172,13 @@ form button {
   font-size: 30px;
   color: white;
 }
+
 .logo i {
   display: block;
   padding: 20px 0 0 0;
   transform: translateX(-5px);
 }
+
 .logo span {
   color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
@@ -172,6 +187,7 @@ form button {
 .animation-enter {
   opacity: 0.01;
 }
+
 .animation-enter.animation-enter-active {
   opacity: 1;
   transition: opacity 0.6s ease, margin 0.5s ease;
@@ -181,6 +197,7 @@ form button {
   margin-top: 0px;
   opacity: 1;
 }
+
 .animation-leave.animation-leave-active {
   margin-top: -30px;
   opacity: 0.01;
