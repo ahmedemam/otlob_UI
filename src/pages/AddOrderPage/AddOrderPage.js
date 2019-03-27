@@ -14,9 +14,9 @@ class AddOrderPage extends Component {
     };
 
     // componentWillReceiveProps
-    componentWillReceiveProps(nextProps, nextContext) {
-
-    }
+    // componentWillReceiveProps(nextProps, nextContext) {
+    //
+    // }
 
     handleFriendsData(data) {
         this.setState({
