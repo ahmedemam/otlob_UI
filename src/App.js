@@ -21,7 +21,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      
         <BrowserRouter>
           <Navbar />
           <React.Fragment>
@@ -29,7 +28,6 @@ class App extends Component {
               <Route path="/login" exact component={Login} />
               <Route path="/register" exact component={RegistrationForm} />
               <Route path="/forgotPassword" exact component={ForgotPassword} />
-
 
               <Route path="/" exact component={HomePage} />
               {/* <Route path="/login" render={() => <LoginPage />} /> */}
