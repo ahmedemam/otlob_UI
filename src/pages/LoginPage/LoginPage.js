@@ -7,78 +7,85 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {Button} from 'reactstrap';
 
 
-const ReactCSSTG =ReactCSSTransitionGroup;
+const ReactCSSTG = ReactCSSTransitionGroup;
 
 // Main app
- export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        isVisible: true
-      }
-      // Bindings
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleRemount = this.handleRemount.bind(this);
-  }
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isVisible: true
+        };
+        // Bindings
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRemount = this.handleRemount.bind(this);
+    }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.setState({
-      isVisible: false
-    }, function() {
-      console.log(this.state.isVisible)
-    });
-    return false;
-  }
-  handleRemount(e) {
-    this.setState({
-      isVisible: true
-    }, function() {
-      console.log(this.state.isVisible)
-    });
-    e.preventDefault();
-  }
-  render() {
+    handleSubmit(e) {
+        e.preventDefault();
+        this.setState({
+            isVisible: false
+        }, function () {
+            console.log(this.state.isVisible)
+        });
+        return false;
+    }
 
-    // const for React CSS transition declaration
-    let component = this.state.isVisible ? <Modal onSubmit={ this.handleSubmit } key='modal'/> : <ModalBack onClick={ this.handleRemount } key='bringitback'/>;
-    return <ReactCSSTG transitionName="animation" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-             { component }
-           </ReactCSSTG>
-  }
+    handleRemount(e) {
+        this.setState({
+            isVisible: true
+        }, function () {
+            console.log(this.state.isVisible)
+        });
+        e.preventDefault();
+    }
+
+    render() {
+
+        // const for React CSS transition declaration
+        let component = this.state.isVisible ? <Modal onSubmit={this.handleSubmit} key='modal'/> :
+            <ModalBack onClick={this.handleRemount} key='bringitback'/>;
+        return <ReactCSSTG transitionName="animation" transitionAppear={true} transitionAppearTimeout={500}
+                           transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+            {component}
+        </ReactCSSTG>
+    }
 }
 
 // Modal
 class Modal extends React.Component {
-  render() {
-    //return <div className={styles.Modal} >
-    return <div className="Modal" >
-    <div className= 'row'>
-            <div className='col-lg-11 col-md-11 col-sm-11 col-xs-11 cola '>
-    
-              <Logo />
-              <form onSubmit= { this.props.onSubmit }>
-              <div className='col-md-4'>
-                <input className="widthfifth" type='text' name='username' placeholder='Enter Your username' />
-                <input className="widthfifth" type='password' name='password' placeholder='Enter Your password' />
-                </div>
-                
-                <Button className="signinbutton col-md-4"> Sign In</Button>
-              </form>
-              <div className='social-signin'>
-                <Button className="fb" onClick={ this.props.onClick }><i className="fa fa-facebook" aria-hidden="true">FaceBook</i></Button>
-                <Button className="tw" onClick={ this.props.onClick }><i className="fa fa-gmail" aria-hidden="true">Gmail</i></Button>
-              </div>
-                
-                
-                <a href='/forgotPassword'>forget your password ?</a>
-                
+    render() {
+        //return <div className={styles.Modal} >
+        return <div className="Modal">
+            <div className='row'>
+                <div className='col-lg-11 col-md-11 col-sm-11 col-xs-11 cola '>
 
-                
-           </div>
-           </div>
-           </div>
-  }
+                    <Logo/>
+                    <form onSubmit={this.props.onSubmit}>
+                        <div className='col-md-4'>
+                            <input className="widthfifth" type='text' name='username'
+                                   placeholder='Enter Your username'/>
+                            <input className="widthfifth" type='password' name='password'
+                                   placeholder='Enter Your password'/>
+                        </div>
+
+                        <Button className="signinbutton col-md-4"> Sign In</Button>
+                    </form>
+                    <div className='social-signin'>
+                        <Button className="fb" onClick={this.props.onClick}><i className="fa fa-facebook"
+                                                                               aria-hidden="true">FaceBook</i></Button>
+                        <Button className="tw" onClick={this.props.onClick}><i className="fa fa-gmail"
+                                                                               aria-hidden="true">Gmail</i></Button>
+                    </div>
+
+
+                    <a href='/forgotPassword'>forget your password ?</a>
+
+
+                </div>
+            </div>
+        </div>
+    }
 }
 
 /*
@@ -95,18 +102,19 @@ class Input extends React.Component{
 
 // Fake logo
 class Logo extends React.Component {
-  render() {
-    return <div className="logo">
-                <span> Sign In </span>
-              </div>
-  }
+    render() {
+        return <div className="logo">
+            <span> Sign In </span>
+        </div>
+    }
 }
 
 // Button to brind the modal back
 class ModalBack extends React.Component {
-  render() {
-    return <Button className="bringitback" onClick={ this.props.onClick } key={ this.props.className }>Brind the modal back !</Button>
-  }
+    render() {
+        return <Button className="bringitback" onClick={this.props.onClick} key={this.props.className}>Brind the modal
+            back !</Button>
+    }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
