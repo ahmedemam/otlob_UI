@@ -23,9 +23,9 @@ class LatestOrder extends Component {
   }
 
   render() {
-    const { orders, error } = this.state;
-    const ordersView = orders.length ? (
-      orders.map(order => (
+    const { Orders, error } = this.state;
+    const ordersView = Orders.length ? (
+      Orders.map(order => (
         <tr key={order._id}>
           <Link id={order._id} to="/order-details">
             {order.name} on {order.createdAt}

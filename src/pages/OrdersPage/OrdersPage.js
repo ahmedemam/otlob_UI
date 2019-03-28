@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Table, Button, Alert } from "react-bootstrap";
+import { Table, Button, Alert, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class OrdersPage extends React.Component {
@@ -110,23 +110,25 @@ class OrdersPage extends React.Component {
       </h1>
     ) : null;
     return (
-      <div>
-        <h1>Order Controller</h1>
-        <Link to="/add-order" id={this.state.user._id} />
-        <Table>
-          <thead>
-            <tr>
-              <th>OrderName</th>
-              <th>Restaurant</th>
-              <th>Invited</th>
-              <th>Joined</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>{ordersView}</tbody>
-        </Table>
-      </div>
+      <main className="main-padding">
+        <Container>
+          <h1 className="main-title">Order Controller</h1>
+          <Link to="/add-order" id={this.state.user._id} />
+          <Table>
+            <thead>
+              <tr>
+                <th>OrderName</th>
+                <th>Restaurant</th>
+                <th>Invited</th>
+                <th>Joined</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>{ordersView}</tbody>
+          </Table>
+        </Container>
+      </main>
     );
   }
 }

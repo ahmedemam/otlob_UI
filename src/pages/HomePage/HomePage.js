@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import LatestOrder from "./LatestOrder";
+import { Container } from "react-bootstrap";
 
 class HomePage extends Component {
   render() {
     return (
-      <div className="HomePage">
-        <LatestOrder />
-      </div>
+      <main className="main-padding HomePage">
+        <Container>
+          <LatestOrder />
+        </Container>
+      </main>
     );
   }
 }
