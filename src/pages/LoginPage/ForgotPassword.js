@@ -77,7 +77,6 @@ class ForgotPassword extends Component {
           />
         </FormGroup>
         <Button className="resetpasswordbutton col-md-2 btn-success">
-          {" "}
           Reset Password
         </Button>
       </Form>

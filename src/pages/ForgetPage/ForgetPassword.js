@@ -1,27 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import { Button, Form, FormGroup, Input, Label, Col } from "reactstrap";
-// import Cookies from "universal-cookie";
-import "./register.css";
 import axios from "axios";
 
-// function SignUpUser(data) {
-//   console.log(JSON.stringify(data));
-//   return fetch("http://localhost:4000/users/signup/", {
-//     body: JSON.stringify(data),
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" }
-//   })
-//     .then(response => response.json())
-//     .catch(error => {
-//       console.log("Error while sending data !");
-//     });
-// }
-
-class RegistrationForm extends React.Component {
+class ForgetPassword extends Component {
   state = {
     name: "",
     email: "",
-    password: "",
+    newPassword: "",
     confirm: ""
   };
 
@@ -30,41 +15,20 @@ class RegistrationForm extends React.Component {
     this.setState({
       [e.target.id]: e.target.value
     });
-    // console.log(e.target.value);
+    console.log(e.target.value);
   };
 
-  //componentDidMount() {
-  //let cookies = new Cookies();
-  // if (cookies.get('token'))
-  //   window.location = "http://localhost:3000/";
-  //}
-
-  // hundleSignUp = () => {
-  //   SignUpUser({
-  //     name: this.state.name,
-  //     email: this.state.email,
-  //     password: this.state.password
-  //   }).then(data => {
-  //     console.log(data);
-  //     if (data.email === "Email already exists")
-  //       alert("Email is already exists");
-  //     else if (data.firstName.msg)
-  //       alert("Error in first name enter 3 to 8 character length");
-  //     else alert("sign up successfully please login");
-  //   });
-  // }
-
   //! submit handler
-  handleSignUp = e => {
+  handleSubmit = e => {
     e.preventDefault();
-    if (this.state.password === this.state.confirm) {
+    if (this.state.newPassword === this.state.confirm) {
       axios
-        .post("http://localhost:9292/v1/users/login", {
+        .post("/", {
           params: {
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
-            // confirm: this.state.confirm
+            password: this.state.newPassword,
+            confirm: this.state.confirm
           }
         })
         .then(res => {
@@ -83,14 +47,14 @@ class RegistrationForm extends React.Component {
       <main className="container main-padding">
         <div className="row">
           <div className="col-sm-8 offset-sm-2">
-            <h1 className="main-title text-center">Registeration</h1>
+            <h1 className="main-title text-center">Forgot password</h1>
             <hr />
-            <Form className="registerationform" onSubmit={this.handleSignUp}>
+            <Form className="registerationform" onSubmit={this.handleSubmit}>
               <FormGroup row>
-                <Label for="name" sm={3}>
-                  Name
+                <Label for="name" sm={4}>
+                  Confirm Your Username
                 </Label>
-                <Col sm={9}>
+                <Col sm={8}>
                   <Input
                     id="name"
                     type="name"
@@ -103,10 +67,10 @@ class RegistrationForm extends React.Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="name" sm={3}>
-                  Email
+                <Label for="name" sm={4}>
+                  confirm your Email
                 </Label>
-                <Col sm={9}>
+                <Col sm={8}>
                   <Input
                     id="email"
                     type="email"
@@ -118,10 +82,10 @@ class RegistrationForm extends React.Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="name" sm={3}>
-                  Password
+                <Label for="name" sm={4}>
+                  New Password
                 </Label>
-                <Col sm={9}>
+                <Col sm={8}>
                   <Input
                     id="password"
                     type="password"
@@ -132,10 +96,10 @@ class RegistrationForm extends React.Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="name" sm={3}>
-                  Confirm Password
+                <Label for="name" sm={4}>
+                  Confirm New Password
                 </Label>
-                <Col sm={9}>
+                <Col sm={8}>
                   <Input
                     id="confirm"
                     type="password"
@@ -145,8 +109,8 @@ class RegistrationForm extends React.Component {
                   />
                 </Col>
               </FormGroup>
-              <FormGroup row>
-                <Button className="col-sm-2 btn-success">Register</Button>
+              <FormGroup row className="text-center">
+                <Button className="col-sm-2 btn-success">Submit</Button>
               </FormGroup>
             </Form>
           </div>
@@ -156,4 +120,4 @@ class RegistrationForm extends React.Component {
   }
 }
 
-export default RegistrationForm;
+export default ForgetPassword;

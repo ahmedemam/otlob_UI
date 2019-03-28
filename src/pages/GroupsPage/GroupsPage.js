@@ -68,7 +68,6 @@ class groupsPage extends Component {
   // componentDidUpdate() {
   //   console.log(this.state.allGroups);
   //   if (this.state.allGroups === 0) {
-
   //   }
   // }
 

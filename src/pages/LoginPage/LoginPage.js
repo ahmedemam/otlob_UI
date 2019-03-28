@@ -1,6 +1,141 @@
-// import React, {Component} from "react";
+import React, { Component } from "react";
 // import ReactDOM from "react-dom";
-// import "./login.css";
+import "./login.scss";
+import { Container, Form, Row, Col, Button } from "react-bootstrap";
+// import NavLink from "react-bootstrap/NavLink";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
+class Login extends Component {
+  state = {
+    username: "",
+    password: ""
+    // remember: ""
+  };
+
+  //! inputs change handler
+  changeHandler = e => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+    console.log(e.target.value);
+  };
+
+  //! remember me Handler
+  // rememberHandler = e => {
+  //   this.setState({
+  //     remember: e.target.checked
+  //   });
+  //   console.log(e.target.checked);
+  // };
+
+  //! submit handler
+  submitHandler = () => {
+    //*-----------
+    axios
+      .post("http://localhost:9292/v1/users/login", {
+        params: {
+          email: this.state.username,
+          password: this.state.password
+          // remember: this.state.remember
+        }
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    //*-----------
+  };
+
+  render() {
+    return (
+      <main className="main-padding login">
+        <Container>
+          <h1 className="text-center main-title">Yalla Notlob</h1>
+          {/* //! login form */}
+          <Form onSubmit={this.submitHandler}>
+            <Form.Group as={Row}>
+              <Form.Label column sm={{ span: 2, offset: 2 }}>
+                Email
+              </Form.Label>
+              <Col sm={6}>
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  id="email"
+                  onChange={this.changeHandler}
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label column sm={{ span: 2, offset: 2 }}>
+                Password
+              </Form.Label>
+              <Col sm={6}>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  id="password"
+                  onChange={this.changeHandler}
+                />
+              </Col>
+            </Form.Group>
+            {/* <Form.Group as={Row} controlId="formHorizontalCheck">
+              <Col sm={{ span: 6, offset: 4 }}>
+                <Form.Check
+                  label="Remember me"
+                  id="remember"
+                  onChange={this.rememberHandler}
+                />
+              </Col>
+            </Form.Group> */}
+
+            <Form.Group as={Row}>
+              <Col sm={{ span: 2, offset: 5 }} className="text-center">
+                <Button type="submit">Login</Button>
+              </Col>
+            </Form.Group>
+          </Form>
+
+          {/* //! Register || forget password */}
+          <div className="login__register">
+            <Form.Group as={Row}>
+              <Col sm={{ span: 4, offset: 4 }} className="text-center">
+                <Link to="/register">New user? Register Here</Link>
+              </Col>
+            </Form.Group>
+            <Form.Group>
+              <Col sm={{ span: 4, offset: 4 }} className="text-center">
+                <Link to="/forgotPassword">Forget your Password</Link>
+              </Col>
+            </Form.Group>
+          </div>
+
+          {/* //! facebook && Google */}
+          <div className="login__third">
+            <Form.Group as={Row}>
+              <Col sm={{ span: 4, offset: 4 }} className="text-center">
+                <Button className="btn btn-facebook">
+                  Login with facebook
+                </Button>
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Col sm={{ span: 4, offset: 4 }} className="text-center">
+                <Button className="btn btn-google">Login with Google</Button>
+              </Col>
+            </Form.Group>
+          </div>
+        </Container>
+      </main>
+    );
+  }
+}
+
+export default Login;
+
 // import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 // import {Button,Modal,ModalBlack} from "reactstrap";
 //

@@ -1,9 +1,26 @@
-@charset "UTF-8";
+.login {
+  &__register {
+  }
+
+  &__third {
+    .btn-facebook {
+      background-color: #3b5998;
+      border-color: #3b5998;
+    }
+
+    .btn-google {
+      background-color: #ea4335;
+      border-color: #ea4335;
+    }
+  }
+}
+
+/* @charset "UTF-8";
 @import "https://fonts.googleapis.com/css?family=Noto+Sans";
 
 body {
   font-family: "Noto Sans", sans-serif;
-  /* background: url("food.jpeg") no-repeat fixed; */
+  background: url("food.jpeg") no-repeat fixed;
 }
 
 .widthfifth {
@@ -211,4 +228,4 @@ form button {
 .animation-appear.animation-appear-active {
   opacity: 1;
   transition: opacity 0.5s ease-in;
-}
+} */

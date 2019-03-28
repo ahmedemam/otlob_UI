@@ -15,7 +15,7 @@ import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
 
 import Login from "./pages/LoginPage/LoginPage";
 import RegistrationForm from "./pages/RegisterPage/RegisterPage";
-import ForgotPassword from "./pages/LoginPage/ForgotPassword";
+import ForgotPassword from "./pages/ForgetPage/ForgetPassword";
 
 class App extends Component {
   render() {

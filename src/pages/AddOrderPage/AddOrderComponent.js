@@ -137,10 +137,12 @@ class AddOrderComponent extends React.Component {
       return friend._id !== deletedFriend;
     });
     this.setState({ FriendsInOrder: newFriends });
-    const deletedGroup = nextProps.group_deleted_id;
-    const newGroup = this.state.FriendsInOrder.filter(friend => {
-      return friend._id !== deletedFriend;
-    });
+    //! =================================
+    // const deletedGroup = nextProps.group_deleted_id;
+    // const newGroup = this.state.FriendsInOrder.filter(friend => {
+    //   return friend._id !== deletedFriend;
+    // });
+    //! =================================
     this.setState({ GroupsInOrder: newFriends });
   }
 

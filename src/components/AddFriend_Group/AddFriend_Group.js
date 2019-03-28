@@ -9,7 +9,9 @@ class Add extends Component {
 
   handleSubmit = () => {
     let route = "";
+    //! =================================
     let parameter = "";
+    //! =================================
     if (this.props.type === "Friends") {
       route = "friends";
       parameter = "email";

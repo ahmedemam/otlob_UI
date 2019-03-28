@@ -78,6 +78,25 @@ class orderDetailsPage extends Component {
     this.setState({
       allOrders: orders
     });
+
+    //*-----------
+    axios
+      .post("/", {
+        params: {
+          person: "Mostafa",
+          item: newOrder.item,
+          amount: newOrder.amount,
+          price: newOrder.price,
+          comment: newOrder.comment
+        }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    //*-----------
   };
 
   render() {
