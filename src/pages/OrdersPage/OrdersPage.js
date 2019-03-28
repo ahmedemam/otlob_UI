@@ -75,7 +75,6 @@ class OrdersPage extends React.Component {
 
     };
 
-
     // handle view
     // handle Invited
     // handle Joined
