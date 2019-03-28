@@ -99,8 +99,8 @@ class orderDetailsPage extends Component {
     return (
       <main className="main-padding order-details">
         <Container>
+          <h1 className="main-title">Order Details</h1>
           <section>
-            <h1 className="main-title">Order Details</h1>
             <Row className="order-details__table">
               {/* //! allOrders */}
               <Col sm={8}>
