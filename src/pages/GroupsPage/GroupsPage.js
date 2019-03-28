@@ -61,16 +61,21 @@ class groupsPage extends Component {
       return group.id !== groupId;
     });
     this.setState({ allGroups: groups });
+    // console.log(this.state);
   };
 
-  // //! testing
+  // // //! testing
   // componentDidUpdate() {
-  //   console.log(this.state.selectedGroupId);
+  //   console.log(this.state.allGroups);
+  //   if (this.state.allGroups === 0) {
+
+  //   }
   // }
 
   render() {
     //! list groups
     let groupsLength = this.state.allGroups.length;
+    let firstId = this.state.allGroups[0] ? this.state.allGroups[0].id : null;
     const listGroups = groupsLength ? (
       this.state.allGroups.map(group => {
         return (
@@ -115,7 +120,7 @@ class groupsPage extends Component {
                 <div className="groups__selected-group">
                   <GroupFriends
                     groupId={this.state.selectedGroupId}
-                    firstGroupId={this.state.allGroups[0].id}
+                    firstGroupId={firstId}
                   />
                 </div>
               </Col>
