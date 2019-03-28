@@ -7,11 +7,11 @@ import Navbar from "./components/Navbar/Navbar";
 
 //! pages
 import HomePage from "./pages/HomePage/HomePage";
-import FriendsPage from "./pages/FriendsPage/FriendsPage";
-import GroupsPage from "./pages/GroupsPage/GroupsPage";
-import OrdersPage from "./pages/OrdersPage/OrdersPage";
+// import FriendsPage from "./pages/FriendsPage/FriendsPage";
+// import GroupsPage from "./pages/GroupsPage/GroupsPage";
+// import OrdersPage from "./pages/OrdersPage/OrdersPage";
 import AddOrderPage from "./pages/AddOrderPage/AddOrderPage";
-import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
+// import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
 
 import Login from "./pages/LoginPage/LoginPage";
 import RegistrationForm from "./pages/RegisterPage/RegisterPage";
@@ -32,17 +32,15 @@ class App extends Component {
               <Route path="/" exact component={HomePage} />
               {/* <Route path="/login" render={() => <LoginPage />} /> */}
               {/* <Route path="/register" render={() => <RegisterPage />} /> */}
-              <Route path="/friends" component={FriendsPage} />
-              <Route path="/groups" component={GroupsPage} />
-              <Route path="/orders" render={() => <OrdersPage />} />
-              <Route path="/add-order" render={() => <AddOrderPage />} />
-              <Route
-                path="/order-details"
-                render={() => <OrderDetailsPage />}
-              />
+              {/*<Route path="/friends" component={FriendsPage} />*/}
+              {/*<Route path="/groups" component={GroupsPage} />*/}
+              {/*<Route path="/orders" render={() => <OrdersPage />} />*/}
+              {/*<Route path="/add-order" render={() => <AddOrderPage />} />*/}
+              {/*<Route path="/order-details" render={() => <OrderDetailsPage />}/>*/}
             </Switch>
           </React.Fragment>
         </BrowserRouter>
+        {/*<AddOrderPage/>*/}
       </div>
     );
   }

@@ -1,0 +1,10 @@
+.AddOrderComponent{
+    width: 40%;
+    margin:1% 2%;
+    padding: 1%;
+    float: left;
+}
+
+.AddOrderComponent h1{
+    text-align: center;
+}
