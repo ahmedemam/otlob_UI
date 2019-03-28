@@ -1,11 +1,14 @@
-import React from "react";
+import React, {Component} from "react";
+import LatestOrder from "LatestOrder";
 
-const homepage = () => {
-  return (
-    <main>
-      <h1>Home Page</h1>
-    </main>
-  );
-};
+class HomePage extends Component{
+    render() {
+        return(
+            <div className="HomePage">
+                <LatestOrder/>
+            </div>
+        );
+    }
+}
 
-export default homepage;
+export default HomePage;
