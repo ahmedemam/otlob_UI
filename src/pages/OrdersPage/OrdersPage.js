@@ -1,22 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
-import {
-  Table,
-  Button,
-  Alert,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Modal,
-  Input
-} from "react-bootstrap";
-import { Redirect, Link } from "react-router-dom";
+import { Table, Button, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class OrdersPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     user: {},
     orders: []
@@ -78,9 +65,7 @@ class OrdersPage extends React.Component {
       });
 
     const orders = this.state.orders.map(order => {
-      if (order._id === orderId) {
-        order.status = "Finish";
-      }
+      return order._id === orderId ? (order.status = "Finish") : order.status;
     });
 
     this.setState({ orders: orders });
