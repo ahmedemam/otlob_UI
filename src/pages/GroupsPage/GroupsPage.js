@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 import "./GroupsPage.scss";
@@ -37,7 +37,7 @@ class groupsPage extends Component {
   //       //   return { ...post, author: "mostafa" };
   //       // });
   //       this.setState({ groupFriends: posts });
-  //       // console.log(res);
+  //       // console.logselectedGroup.id(res);
   //     })
   //     .catch(error => {
   //       this.setState({ error: true });
@@ -46,21 +46,27 @@ class groupsPage extends Component {
 
   //! select group
   selectGroupHandler = id => {
-    let selectedGroup = this.state.allGroups.filter(group => {
+    let [selectedGroup] = this.state.allGroups.filter(group => {
       return group.id === id;
     });
-    // this.setState({ selectedGroupId: selectedGroupId });
-    console.log(selectedGroup);
+    this.setState({ selectedGroupId: selectedGroup.id });
+    // console.log(selectedGroup.id);
+    // console.log(selectedGroup);
   };
 
   //! delete group
   deleteGroupHandler = groupId => {
-    console.log(groupId);
+    // console.log(groupId);
     let groups = this.state.allGroups.filter(group => {
       return group.id !== groupId;
     });
     this.setState({ allGroups: groups });
   };
+
+  // //! testing
+  // componentDidUpdate() {
+  //   console.log(this.state.selectedGroupId);
+  // }
 
   render() {
     //! list groups
@@ -68,7 +74,10 @@ class groupsPage extends Component {
     const listGroups = groupsLength ? (
       this.state.allGroups.map(group => {
         return (
-          <li key={group.id} onClick={() => this.selectGroupHandler(group.id)}>
+          <li
+            key={group.id}
+            onMouseDown={() => this.selectGroupHandler(group.id)}
+          >
             {group.name}
             <Button
               className="btn btn-danger"
@@ -104,7 +113,10 @@ class groupsPage extends Component {
               {/* //! groups' friends */}
               <Col sm={8}>
                 <div className="groups__selected-group">
-                  <GroupFriends groupId={this.state.selectedGroupId} />
+                  <GroupFriends
+                    groupId={this.state.selectedGroupId}
+                    firstGroupId={this.state.allGroups[0].id}
+                  />
                 </div>
               </Col>
             </Row>
