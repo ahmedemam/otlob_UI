@@ -1,13 +1,22 @@
 import React from "react";
 import axios from "axios";
 import { Table, Button, Alert, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class OrdersPage extends React.Component {
-  state = {
-    user: {},
-    orders: []
-  };
+  constructor(props) {
+    super(props);
+
+    const currentUser = JSON.parse(localStorage.getItem("current-user"));
+    this.state = {
+      user: currentUser,
+      orders: []
+    };
+  }
+  // state = {
+  //   user: {},
+  //   orders: []
+  // };
 
   componentDidMount() {
     axios
@@ -109,7 +118,9 @@ class OrdersPage extends React.Component {
         <Alert color="danger">{error}</Alert>
       </h1>
     ) : null;
-    return (
+    console.log("FRIENDS", this.state.user);
+    return this.state.user ? (
+      // return (
       <main className="main-padding">
         <Container>
           <h1 className="main-title">Order Controller</h1>
@@ -129,6 +140,8 @@ class OrdersPage extends React.Component {
           </Table>
         </Container>
       </main>
+    ) : (
+      <Redirect to="/login" />
     );
   }
 }

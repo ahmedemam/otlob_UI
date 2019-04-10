@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Table, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./LatestOrder.css";
@@ -9,18 +9,18 @@ class LatestOrder extends Component {
     Orders: []
   };
 
-  componentDidMount() {
-    // get groups
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then(function(response) {
-        console.log(response);
-        this.setState({ Orders: response.data });
-      })
-      .catch(function(error) {
-        console.error(error);
-      });
-  }
+  // componentDidMount() {
+  //   // get groups
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/posts")
+  //     .then(function(response) {
+  //       console.log(response);
+  //       this.setState({ Orders: response.data });
+  //     })
+  //     .catch(function(error) {
+  //       console.error(error);
+  //     });
+  // }
 
   render() {
     const { Orders, error } = this.state;

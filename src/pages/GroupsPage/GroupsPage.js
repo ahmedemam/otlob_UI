@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import axios from "axios";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 
 import "./GroupsPage.scss";
 //! components
@@ -8,24 +9,48 @@ import Add from "../../components/AddFriend_Group/AddFriend_Group";
 import GroupFriends from "./GroupFriends";
 
 class groupsPage extends Component {
-  state = {
-    allGroups: [
-      { id: 1, name: "OS" },
-      { id: 2, name: "OSAD" },
-      { id: 3, name: "TAD" },
-      { id: 4, name: "CPD" },
-      { id: 5, name: "BDSE" }
-    ],
-    // groupFriends: [
-    //   { id: 1, name: "Mostafa" },
-    //   { id: 2, name: "Ali" },
-    //   { id: 3, name: "Hamza" },
-    //   { id: 4, name: "Sherif" },
-    //   { id: 5, name: "Amr" }
-    // ]
-    selectedGroupId: null,
-    error: false
-  };
+  constructor(props) {
+    super(props);
+
+    const currentUser = JSON.parse(localStorage.getItem("current-user"));
+    this.state = {
+      user: currentUser,
+      allGroups: [
+        { id: 1, name: "OS" },
+        { id: 2, name: "OSAD" },
+        { id: 3, name: "TAD" },
+        { id: 4, name: "CPD" },
+        { id: 5, name: "BDSE" }
+      ],
+      // groupFriends: [
+      //   { id: 1, name: "Mostafa" },
+      //   { id: 2, name: "Ali" },
+      //   { id: 3, name: "Hamza" },
+      //   { id: 4, name: "Sherif" },
+      //   { id: 5, name: "Amr" }
+      // ]
+      selectedGroupId: null,
+      error: false
+    };
+  }
+  // state = {
+  //   allGroups: [
+  //     { id: 1, name: "OS" },
+  //     { id: 2, name: "OSAD" },
+  //     { id: 3, name: "TAD" },
+  //     { id: 4, name: "CPD" },
+  //     { id: 5, name: "BDSE" }
+  //   ],
+  //   // groupFriends: [
+  //   //   { id: 1, name: "Mostafa" },
+  //   //   { id: 2, name: "Ali" },
+  //   //   { id: 3, name: "Hamza" },
+  //   //   { id: 4, name: "Sherif" },
+  //   //   { id: 5, name: "Amr" }
+  //   // ]
+  //   selectedGroupId: null,
+  //   error: false
+  // };
 
   // //! get groups
   // componentDidMount() {
@@ -96,7 +121,9 @@ class groupsPage extends Component {
       <h5>There are no groups yet</h5>
     );
 
-    return (
+    // return (
+    console.log("GROUPS", this.state.user);
+    return this.state.user ? (
       <main className="main-padding groups">
         <Container>
           <h1 className="main-title">Groups</h1>
@@ -127,6 +154,8 @@ class groupsPage extends Component {
           </section>
         </Container>
       </main>
+    ) : (
+      <Redirect to="/login" />
     );
   }
 }

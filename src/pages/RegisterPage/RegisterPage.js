@@ -57,18 +57,20 @@ class RegistrationForm extends React.Component {
   //! submit handler
   handleSignUp = e => {
     e.preventDefault();
+    // const obj =
     if (this.state.password === this.state.confirm) {
       axios
-        .post("http://localhost:9292/v1/users/login", {
-          params: {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password
-            // confirm: this.state.confirm
-          }
+        .post("http://localhost:3000/v1/user", {
+          // params: {
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password
+          // confirm: this.state.confirm
+          // }
         })
         .then(res => {
           console.log(res);
+          console.log(res.data);
         })
         .catch(err => {
           console.log(err);

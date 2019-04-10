@@ -2,12 +2,21 @@ import React from "react";
 import Add from "../../components/AddFriend_Group/AddFriend_Group";
 import axios from "axios";
 import { Alert, Table, Button, Container } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 // import friend from "../../components/Modal/friend";
 
 class FriendsPage extends React.Component {
-  state = {
-    Friends: []
-  };
+  constructor(props) {
+    super(props);
+
+    const currentUser = JSON.parse(localStorage.getItem("current-user"));
+    this.state = {
+      user: currentUser,
+      Friends: []
+    };
+  }
+  // state = {
+  // };
 
   componentDidMount() {
     // ?user_id=${user._id}
@@ -66,7 +75,10 @@ class FriendsPage extends React.Component {
         <Alert color="danger">{error}</Alert>
       </h1>
     ) : null;
-    return (
+
+    console.log("FRIENDS", this.state.user);
+    return this.state.user ? (
+      // return (
       <main className="main-padding FriendsPage">
         <Container>
           <h1 className="main-title">Friends</h1>
@@ -81,6 +93,8 @@ class FriendsPage extends React.Component {
           </Table>
         </Container>
       </main>
+    ) : (
+      <Redirect to="/login" />
     );
   }
 }

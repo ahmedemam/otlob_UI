@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
 //! components
@@ -18,7 +18,17 @@ import RegistrationForm from "./pages/RegisterPage/RegisterPage";
 import ForgotPassword from "./pages/ForgetPage/ForgetPassword";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    const currentUser = JSON.parse(localStorage.getItem("current-user"));
+    this.state = {
+      user: currentUser
+    };
+  }
+
   render() {
+    // return this.state.user ? (
     return (
       <div className="App">
         <BrowserRouter>
@@ -45,6 +55,16 @@ class App extends Component {
         {/*<AddOrderPage/>*/}
       </div>
     );
+    // ) : (
+    //   <>
+    //     <BrowserRouter>
+    //       <Switch>
+    //         <Route path="/login" exact component={Login} />
+    //       </Switch>
+    //       <Link to="/login"> PLEASE LOGIN</Link>
+    //     </BrowserRouter>
+    //   </>
+    // );
   }
 }
 
