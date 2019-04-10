@@ -8,17 +8,27 @@ import axios from "axios";
 
 class Login extends Component {
   state = {
-    username: "",
+    email: "",
     password: ""
     // remember: ""
   };
 
   //! inputs change handler
-  changeHandler = e => {
-    this.setState({
-      [e.target.id]: e.target.value
-    });
-    console.log(e.target.value);
+  // changeHandler = e => {
+  //   this.setState({
+  //     [e.target.id]: e.target.value
+  //   });
+  //   console.log(e.target.value);
+  // };
+
+  emailChangeHandler = event => {
+    this.setState({ email: event.target.value });
+    console.log(this.state.email);
+  };
+
+  passwordChangeHandler = event => {
+    this.setState({ password: event.target.value });
+    console.log(this.state.password);
   };
 
   //! remember me Handler
@@ -30,23 +40,30 @@ class Login extends Component {
   // };
 
   //! submit handler
-  submitHandler = () => {
+  submitHandler = e => {
+    e.preventDefault();
     //*-----------
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
     axios
-      .post("http://localhost:9292/v1/users/login", {
-        params: {
-          email: this.state.username,
-          password: this.state.password
-          // remember: this.state.remember
+      .post("http://localhost:3000/v1/session", user)
+      .then(res => {
+        // console.log(res.data.data.user);
+        const user = res.data.data.user;
+        if (res.status === 201) {
+          const currentUser = JSON.stringify(user);
+          localStorage.setItem("current-user", currentUser);
+          console.log("LOGIN", localStorage.getItem("current-user"));
+          // console.log(currentUser);
+          this.props.history.push("/");
         }
       })
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
       });
-    //*-----------
   };
 
   render() {
@@ -65,7 +82,7 @@ class Login extends Component {
                   type="email"
                   placeholder="Email"
                   id="email"
-                  onChange={this.changeHandler}
+                  onChange={this.emailChangeHandler}
                 />
               </Col>
             </Form.Group>
@@ -78,7 +95,7 @@ class Login extends Component {
                   type="password"
                   placeholder="Password"
                   id="password"
-                  onChange={this.changeHandler}
+                  onChange={this.passwordChangeHandler}
                 />
               </Col>
             </Form.Group>
