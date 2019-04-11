@@ -82,8 +82,8 @@ class navbar extends Component {
             </Nav>
             <Nav>
               <Image width="50" height="50" roundedCircle />
-              <Nav.Link href="#user" className="align-self-center">
-                Mostafa Ali
+              <Nav.Link className="align-self-center">
+                {this.state.user.name}
               </Nav.Link>
               <Button variant="danger" onClick={this.logOutHandler}>
                 Logout
