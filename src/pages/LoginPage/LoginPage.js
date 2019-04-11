@@ -51,8 +51,9 @@ class Login extends Component {
     axios
       .post("http://localhost:3000/v1/session", user)
       .then(res => {
-        // console.log(res.data.data.user);
-        const user = res.data.data.user;
+        console.log(res.data);
+        // console.log(res.data.name);
+        const user = res.data;
         if (res.status === 201) {
           const currentUser = JSON.stringify(user);
           localStorage.setItem("current-user", currentUser);

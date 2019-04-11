@@ -99,7 +99,7 @@ class RegistrationForm extends React.Component {
                     name="fname"
                     placeholder="User Name"
                     value={this.state.firstName}
-                    pattern="[A-Za-z\\s]*"
+                    // pattern="[A-Za-z\\s]*"
                     onChange={this.changeHandler}
                   />
                 </Col>
