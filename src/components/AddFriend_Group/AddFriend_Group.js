@@ -4,34 +4,74 @@ import axios from "axios";
 
 class Add extends Component {
   state = {
-    inputField: ""
+    Friends: [],
+    inputField: "",
+    user: ""
   };
 
-  handleSubmit = () => {
+  componentWillMount() {
+    const currentUser = JSON.parse(localStorage.getItem("current-user"));
+    this.setState({
+      user: currentUser
+    });
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
     let route = "";
     //! =================================
     let parameter = "";
     //! =================================
     if (this.props.type === "Friends") {
-      route = "friends";
+      route = "friend";
       parameter = "email";
     } else if (this.props.type === "Groups") {
       route = "groups";
       parameter = "name";
     }
     const valueInputField = this.state.inputField;
-    axios
-      .post(route, {
-        params: {
-          parameter: valueInputField
-        }
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    const currentFriends = this.props.arrName;
+    console.log("Friend:", currentFriends);
+    let statusEmail = false;
+    currentFriends.forEach(friend => {
+      if (friend.email === this.state.inputField) {
+        statusEmail = true;
+      }
+    });
+
+    // console.log(notExistedFriend);
+    if (!statusEmail) {
+      axios
+        .post(
+          `http://localhost:3000/v1/user/${this.state.user._id.$oid}/${route}`,
+          {
+            email: valueInputField
+          }
+        )
+        .then(response => {
+          if (response.status === 204) {
+            // console.log("204", response.data);
+          } else if (response.status === 200) {
+            // console.log("200", response.data);
+            const friendsProps = this.props.arrName;
+            friendsProps.push(
+              // _id: response.data._id,
+              // name: response.data.name,
+              // email: response.data.email,
+              // image: response.data.image
+              response.data
+            );
+            this.setState({
+              Friends: friendsProps
+            });
+            this.props.newFriends(this.state.Friends);
+            console.log("Freiends:Add", this.state.Friends);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   };
 
   handleChange = event => {
@@ -40,12 +80,12 @@ class Add extends Component {
 
   render() {
     return (
-      <Row className="add-frined-group">
-        <Col sm={3} className="text">
-          {this.props.addType}
-        </Col>
-        <Col sm={5} className="input">
-          <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
+        <Row className="add-frined-group">
+          <Col sm={3} className="text">
+            {this.props.addType}
+          </Col>
+          <Col sm={5} className="input">
             <Form.Group>
               <Form.Control
                 onChange={this.handleChange}
@@ -53,12 +93,14 @@ class Add extends Component {
                 type={this.props.inputType}
               />
             </Form.Group>
-          </Form>
-        </Col>
-        <Col sm={2} className="add-btn">
-          <Button variant="success">Add</Button>
-        </Col>
-      </Row>
+          </Col>
+          <Col sm={2} className="add-btn">
+            <Button type="submit" variant="success">
+              Add
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     );
   }
 }
