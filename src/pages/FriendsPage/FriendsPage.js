@@ -1,7 +1,7 @@
 import React from "react";
 import Add from "../../components/AddFriend_Group/AddFriend_Group";
 import axios from "axios";
-import { Alert, Table, Button, Container } from "react-bootstrap";
+import { Alert, Button, Container } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 // import friend from "../../components/Modal/friend";
@@ -23,15 +23,17 @@ class FriendsPage extends React.Component {
 
   componentDidMount() {
     // ?user_id=${user._id}
-    axios
-      .get(`http://localhost:3000/v1/user/${this.state.user._id.$oid}/friend`)
-      .then(response => {
-        console.log(response);
-        this.setState({ Friends: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    if (this.state.user) {
+      axios
+        .get(`http://localhost:3000/v1/user/${this.state.user._id.$oid}/friend`)
+        .then(response => {
+          console.log(response);
+          this.setState({ Friends: response.data });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 
   handleUnFriend = friend_id => {
@@ -112,7 +114,7 @@ class FriendsPage extends React.Component {
             addType="Your Friend Email"
             inputType="email"
             type="Friends"
-            arrName={this.state.Friends}
+            friendsArr={this.state.Friends}
             newFriends={this.getFriendsHandler}
           />
           <section className="FriendsPage__friends">

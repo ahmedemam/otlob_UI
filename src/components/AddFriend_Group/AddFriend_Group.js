@@ -5,6 +5,7 @@ import axios from "axios";
 class Add extends Component {
   state = {
     Friends: [],
+    Groups: [],
     inputField: "",
     user: ""
   };
@@ -18,59 +19,90 @@ class Add extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const valueInputField = this.state.inputField;
+
     let route = "";
     //! =================================
     let parameter = "";
     //! =================================
+
+    //! add friend condition
     if (this.props.type === "Friends") {
       route = "friend";
       parameter = "email";
-    } else if (this.props.type === "Groups") {
-      route = "groups";
-      parameter = "name";
-    }
-    const valueInputField = this.state.inputField;
-    const currentFriends = this.props.arrName;
-    console.log("Friend:", currentFriends);
-    let statusEmail = false;
-    currentFriends.forEach(friend => {
-      if (friend.email === this.state.inputField) {
-        statusEmail = true;
+      const currentFriends = this.props.friendsArr;
+      let statusEmail = false;
+      currentFriends.forEach(friend => {
+        if (friend.email === this.state.inputField) {
+          statusEmail = true;
+        }
+      });
+      if (!statusEmail) {
+        axios
+          .post(
+            `http://localhost:3000/v1/user/${
+              this.state.user._id.$oid
+            }/${route}`,
+            {
+              email: valueInputField
+            }
+          )
+          .then(response => {
+            if (response.status === 204) {
+              // test
+            } else if (response.status === 200) {
+              const friendsProps = this.props.friendsArr;
+              friendsProps.push(response.data);
+              this.setState({
+                Friends: friendsProps
+              });
+              this.props.newFriends(this.state.Friends);
+              console.log("Freiends:Add", this.state.Friends);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
       }
-    });
-
-    // console.log(notExistedFriend);
-    if (!statusEmail) {
-      axios
-        .post(
-          `http://localhost:3000/v1/user/${this.state.user._id.$oid}/${route}`,
-          {
-            email: valueInputField
-          }
-        )
-        .then(response => {
-          if (response.status === 204) {
-            // console.log("204", response.data);
-          } else if (response.status === 200) {
-            // console.log("200", response.data);
-            const friendsProps = this.props.arrName;
-            friendsProps.push(
-              // _id: response.data._id,
-              // name: response.data.name,
-              // email: response.data.email,
-              // image: response.data.image
-              response.data
-            );
-            this.setState({
-              Friends: friendsProps
-            });
-            this.props.newFriends(this.state.Friends);
-            console.log("Freiends:Add", this.state.Friends);
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      //! add group condition
+    } else if (this.props.type === "Groups") {
+      const currentGroups = this.props.groupsArr;
+      let statusGroup = false;
+      currentGroups.forEach(group => {
+        if (group.name === this.state.inputField) {
+          statusGroup = true;
+          console.log("YES");
+        }
+      });
+      route = "group";
+      parameter = "name";
+      if (!statusGroup) {
+        axios
+          .post(
+            `http://localhost:3000/v1/user/${
+              this.state.user._id.$oid
+            }/${route}`,
+            {
+              name: valueInputField
+            }
+          )
+          .then(response => {
+            if (response.status === 204) {
+              // test
+            } else if (response.status === 200) {
+              const groupsProps = this.props.groupsArr;
+              groupsProps.push(response.data);
+              this.setState({
+                Groups: groupsProps
+              });
+              this.props.newGroups(this.state.Groups);
+              console.log("Groups:Add", this.state.Groups);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
     }
   };
 

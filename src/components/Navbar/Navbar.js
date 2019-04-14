@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { NavLink, Link, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Navbar, Nav, Button, Image } from "react-bootstrap";
 import "./navbar.scss";
 // import axios from "axios";
@@ -83,7 +83,7 @@ class navbar extends Component {
             <Nav>
               <Image width="50" height="50" roundedCircle />
               <Nav.Link className="align-self-center">
-                {this.state.user.name}
+                {this.state.user ? this.state.user.name : "Guest"}
               </Nav.Link>
               <Button variant="danger" onClick={this.logOutHandler}>
                 Logout
