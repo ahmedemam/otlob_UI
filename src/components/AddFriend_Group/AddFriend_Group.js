@@ -4,34 +4,106 @@ import axios from "axios";
 
 class Add extends Component {
   state = {
-    inputField: ""
+    Friends: [],
+    Groups: [],
+    inputField: "",
+    user: ""
   };
 
-  handleSubmit = () => {
+  componentWillMount() {
+    const currentUser = JSON.parse(localStorage.getItem("current-user"));
+    this.setState({
+      user: currentUser
+    });
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const valueInputField = this.state.inputField;
+
     let route = "";
     //! =================================
     let parameter = "";
     //! =================================
+
+    //! add friend condition
     if (this.props.type === "Friends") {
-      route = "friends";
+      route = "friend";
       parameter = "email";
-    } else if (this.props.type === "Groups") {
-      route = "groups";
-      parameter = "name";
-    }
-    const valueInputField = this.state.inputField;
-    axios
-      .post(route, {
-        params: {
-          parameter: valueInputField
+      const currentFriends = this.props.friendsArr;
+      let statusEmail = false;
+      currentFriends.forEach(friend => {
+        if (friend.email === this.state.inputField) {
+          statusEmail = true;
         }
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
       });
+      if (!statusEmail) {
+        axios
+          .post(
+            `http://localhost:3000/v1/user/${
+              this.state.user._id.$oid
+            }/${route}`,
+            {
+              email: valueInputField
+            }
+          )
+          .then(response => {
+            if (response.status === 204) {
+              // test
+            } else if (response.status === 200) {
+              const friendsProps = this.props.friendsArr;
+              friendsProps.push(response.data);
+              this.setState({
+                Friends: friendsProps
+              });
+              this.props.newFriends(this.state.Friends);
+              console.log("Freiends:Add", this.state.Friends);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+      //! add group condition
+    } else if (this.props.type === "Groups") {
+      const currentGroups = this.props.groupsArr;
+      let statusGroup = false;
+      currentGroups.forEach(group => {
+        if (group.name === this.state.inputField) {
+          statusGroup = true;
+          console.log("YES");
+        }
+      });
+      route = "group";
+      parameter = "name";
+      if (!statusGroup) {
+        axios
+          .post(
+            `http://localhost:3000/v1/user/${
+              this.state.user._id.$oid
+            }/${route}`,
+            {
+              name: valueInputField
+            }
+          )
+          .then(response => {
+            if (response.status === 204) {
+              // test
+            } else if (response.status === 200) {
+              const groupsProps = this.props.groupsArr;
+              groupsProps.push(response.data);
+              this.setState({
+                Groups: groupsProps
+              });
+              this.props.newGroups(this.state.Groups);
+              console.log("Groups:Add", this.state.Groups);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    }
   };
 
   handleChange = event => {
@@ -40,12 +112,12 @@ class Add extends Component {
 
   render() {
     return (
-      <Row className="add-frined-group">
-        <Col sm={3} className="text">
-          {this.props.addType}
-        </Col>
-        <Col sm={5} className="input">
-          <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
+        <Row className="add-frined-group">
+          <Col sm={3} className="text">
+            {this.props.addType}
+          </Col>
+          <Col sm={5} className="input">
             <Form.Group>
               <Form.Control
                 onChange={this.handleChange}
@@ -53,12 +125,14 @@ class Add extends Component {
                 type={this.props.inputType}
               />
             </Form.Group>
-          </Form>
-        </Col>
-        <Col sm={2} className="add-btn">
-          <Button variant="success">Add</Button>
-        </Col>
-      </Row>
+          </Col>
+          <Col sm={2} className="add-btn">
+            <Button type="submit" variant="success">
+              Add
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     );
   }
 }
