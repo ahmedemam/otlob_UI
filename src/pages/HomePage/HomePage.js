@@ -4,6 +4,11 @@ import { Container } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 
+import { StreamApp } from 'react-activity-feed';
+import {NotificationDropdown} from 'react-activity-feed';
+import 'react-activity-feed/dist/index.css';
+
+
 class HomePage extends Component {
   constructor(props) {
     super(props);

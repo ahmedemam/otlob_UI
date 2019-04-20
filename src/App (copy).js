@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { StreamApp } from 'react-activity-feed';
-import {NotificationDropdown} from 'react-activity-feed';
-import 'react-activity-feed/dist/index.css';
 import "./App.css";
 
 //! components
@@ -19,7 +16,6 @@ import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
 import Login from "./pages/LoginPage/LoginPage";
 import RegistrationForm from "./pages/RegisterPage/RegisterPage";
 import ForgotPassword from "./pages/ForgetPage/ForgetPassword";
-
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +35,6 @@ class App extends Component {
           <Navbar />
           <React.Fragment>
             <Switch>
-
               <Route path="/" exact component={HomePage} />
               <Route path="/register" exact component={RegistrationForm} />
               <Route path="/login" exact component={Login} />
@@ -54,7 +49,6 @@ class App extends Component {
                 path="/order-details"
                 render={() => <OrderDetailsPage />}
               />
-
             </Switch>
           </React.Fragment>
         </BrowserRouter>

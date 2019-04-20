@@ -6,6 +6,9 @@ import "./navbar.scss";
 // import axios from "axios";
 // import { browserHistory } from "react-router-dom";
 // import { browserHistory } from "react-router";
+import { StreamApp } from 'react-activity-feed';
+import {NotificationDropdown} from 'react-activity-feed';
+import 'react-activity-feed/dist/index.css';
 
 class navbar extends Component {
   constructor(props) {
@@ -80,6 +83,18 @@ class navbar extends Component {
                 </li>
               </ul>
             </Nav>
+
+
+            <Nav>
+            <StreamApp
+            apiKey="du8he7epvp94"
+            appId="45206"
+            token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOTdiMDIzNjctM2NiMi00NGVjLWI1NWItMDdkNjIyOWEwYWEwIn0.w9j70tZ3AMUoHsYw9Ti6L3CxWVp71HthgX7s0DBiaec"
+          >
+            <NotificationDropdown notify/>
+          </StreamApp>
+            </Nav>
+
             <Nav>
               <Image width="50" height="50" roundedCircle />
               <Nav.Link className="align-self-center">
