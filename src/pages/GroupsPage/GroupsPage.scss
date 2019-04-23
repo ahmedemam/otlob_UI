@@ -15,24 +15,44 @@
     box-shadow: 0 0 8px 3px #ccc;
     padding: 20px;
 
-    ul {
-      list-style: none;
-      padding: 0;
 
-      li {
-        margin: 10px 0;
-        padding: 0 0 15px 10px;
-        clear: both;
 
-        &:hover {
-          background-color: #c0ddf5;
-          cursor: pointer;
-        }
+    // ul {
+    //   list-style: none;
+    //   padding: 0;
 
-        button {
-          float: right;
-        }
-      }
+    // li {
+    //   margin: 10px 0;
+    //   padding: 0 0 15px 10px;
+    //   clear: both;
+
+    //   &:hover {
+    //     background-color: #c0ddf5;
+    //     cursor: pointer;
+    //   }
+
+    //   button {
+    //     float: right;
+    //   }
+    // }
+    // }
+  }
+
+  &__each-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+    // padding-left: 10px;
+
+    &:hover {
+      background-color: #c0ddf5;
+      cursor: pointer;
+    }
+
+    >div {
+      width: 100%;
+      padding: 7px 5px;
     }
   }
 

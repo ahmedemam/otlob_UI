@@ -6,6 +6,7 @@ class Add extends Component {
   state = {
     Friends: [],
     Groups: [],
+    GroupsFriends: [],
     inputField: "",
     user: ""
   };
@@ -91,7 +92,12 @@ class Add extends Component {
               // test
             } else if (response.status === 200) {
               const groupsProps = this.props.groupsArr;
-              groupsProps.push(response.data);
+              let addedGroup = response.data;
+              addedGroup = {
+                ...addedGroup,
+                friends: []
+              };
+              groupsProps.push(addedGroup);
               this.setState({
                 Groups: groupsProps
               });
@@ -103,6 +109,39 @@ class Add extends Component {
             console.log(error);
           });
       }
+    } else if (this.props.type === "FriendsToGroups") {
+      // http://localhost:3000/v1/user/5cb38c36f5ddaf66e5c4f435/group/5cb38d12f5ddaf66e5c4f43e/friend
+      // console.log(">>>>>>>>>>>>>>", this.props.selectedGroup);
+      route = "group";
+      let selectedGroup = this.props.selectedGroup;
+      let currentGroupsFriends = this.props.GroupsFriends;
+      axios
+        .post(
+          `http://localhost:3000/v1/user/${this.state.user._id.$oid}/${route}/${
+            selectedGroup._id.$oid
+          }/friend`,
+          {
+            email: valueInputField
+          }
+        )
+        .then(response => {
+          if (response.status === 204) {
+            // test
+          } else if (response.status === 200) {
+            selectedGroup = {
+              ...selectedGroup,
+              friends: [...selectedGroup.friends, response.data]
+            };
+          }
+          // console.log(">>>>>>>>>>>", selectedGroup);
+          // const friends = this.props.groupsFriendsArr;
+          // friends = [...friends, response.data];
+          console.log(">Friedns>", selectedGroup.friends);
+          this.props.newGroupsFriends(selectedGroup);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   };
 
